@@ -6,31 +6,32 @@
 <meta name="theme-color" content="#f7f0e8">
 <title>有些话，想认真说完</title>
 <style>
-:root{--ink:#453b36;--muted:#81736a;--accent:#9b6e62;--paper:#fffdf9}
+:root{--ink:#33292c;--muted:#827276;--rose:#a85e6a;--rose-dark:#85434f;--paper:#fffdfb;--line:#f0e4e3}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#fffaf4,#f2e9df 80%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.95}
-main{width:min(720px,100%);margin:auto;padding:30px 18px 55px}
-.eyebrow{text-align:center;color:#9b887b;letter-spacing:.25em;font-size:12px;margin:12px 0 25px}
-.card{background:rgba(255,253,249,.94);border:1px solid #e9ded3;border-radius:22px;padding:clamp(24px,6vw,48px);box-shadow:0 18px 55px #73564212}
-.kicker{color:var(--accent);font-size:12px;letter-spacing:.18em}
-h1{font-size:clamp(27px,6vw,35px);font-weight:500;line-height:1.5;margin:12px 0 16px}
-.intro{color:#6e625a;font-size:15px}
-button{display:block;width:100%;border:0;border-radius:999px;background:var(--accent);color:white;font-size:15px;padding:14px 18px;margin-top:28px;cursor:pointer}
-button:focus-visible{outline:3px solid #c7a79a;outline-offset:3px}
-.quiet,.footer{text-align:center;color:#9b8d82;font-size:12px;margin-top:17px}
-#letter{display:none;margin-top:18px}
-#letter.visible{display:block;animation:fade .55s ease both}
-h2{text-align:center;font-size:25px;font-weight:500;margin:8px 0 28px}
-.letter p{margin:0 0 19px}
-#letterBody .sign{text-align:right;color:#75665e;margin-top:30px}
-.sign{text-align:right;color:#75665e;margin-top:30px}
-#writingArea{display:none;margin-top:18px}
-#writingArea.visible{display:block;animation:fade .55s ease both}
-#myWords{display:block;width:100%;min-height:240px;resize:vertical;border:1px solid #e5d8cc;border-radius:14px;background:#fffefa;color:var(--ink);font:inherit;line-height:1.9;padding:15px;outline:none}
-#myWords:focus{border-color:#b99486;box-shadow:0 0 0 3px #9b6e621c}
-.write-hint{color:var(--muted);font-size:13px;margin:8px 0 0}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@media(prefers-reduced-motion:reduce){#letter.visible{animation:none}html{scroll-behavior:auto}}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:2;background:radial-gradient(ellipse at 12% 0%,#fff9f3 0,transparent 38%),radial-gradient(ellipse at 95% 32%,#f5e1e5 0,transparent 36%),linear-gradient(145deg,#f9f2ed 0%,#f3e9e9 58%,#faf1eb 100%)}
+main{width:min(780px,100%);margin:0 auto;padding:clamp(30px,7vw,66px) 18px 48px}
+.eyebrow{text-align:center;color:#9d7f82;letter-spacing:.36em;font-size:10px;margin:0 0 26px}
+.card{position:relative;overflow:hidden;background:rgba(255,253,251,.88);border:1px solid rgba(255,255,255,.95);border-radius:26px;padding:clamp(26px,7vw,58px);box-shadow:0 24px 70px rgba(87,49,56,.075),inset 0 1px 0 #fff;backdrop-filter:blur(12px)}
+.card:before{content:"";position:absolute;top:0;left:clamp(26px,7vw,58px);right:clamp(26px,7vw,58px);height:1px;background:linear-gradient(90deg,transparent,#e9c9ce,transparent)}
+.kicker{color:var(--rose);font-size:10px;letter-spacing:.3em}
+h1,h2{font-family:"Songti SC","STSong","Noto Serif CJK SC",serif;font-weight:500}
+h1{font-size:clamp(29px,7vw,43px);letter-spacing:.04em;line-height:1.55;margin:17px 0 18px}
+.intro{color:#76686c;font-size:15px;line-height:2.15;margin:0}
+button{display:block;width:100%;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:linear-gradient(110deg,#ad6872,#8c4b57);color:#fff;font-size:14px;letter-spacing:.08em;padding:15px 20px;margin-top:30px;cursor:pointer;box-shadow:0 9px 24px rgba(143,76,86,.17);transition:transform .2s,box-shadow .2s}
+button:hover{transform:translateY(-2px);box-shadow:0 13px 28px rgba(143,76,86,.24)}
+button:focus-visible{outline:3px solid #d9aeb3;outline-offset:4px}
+.quiet,.footer{text-align:center;color:#a08e92;font-size:12px;letter-spacing:.025em;margin:17px 0 0}
+#letter{display:none;margin-top:20px}
+#letter.visible{display:block;animation:fade .6s ease both}
+h2{text-align:center;font-size:clamp(23px,5vw,29px);letter-spacing:.08em;line-height:1.6;margin:10px 0 34px}
+.letter{font-size:15px;line-height:2.2;color:#514448;overflow-wrap:anywhere}
+.letter p{margin:0 0 23px}
+#letterBody .sign{display:block;text-align:right;color:#92777c;margin-top:34px}
+.footer{padding:8px 12px 0}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:600px){.letter{font-size:16px;line-height:2.25}}
+@media(prefers-reduced-motion:reduce){#letter.visible{animation:none}html{scroll-behavior:auto}button{transition:none}}
 </style>
 </head>
 <body>
@@ -47,15 +48,10 @@ h2{text-align:center;font-size:25px;font-weight:500;margin:8px 0 28px}
 <div class="kicker" style="text-align:center">写给你的一封信</div>
 <h2>有些话，想认真说完</h2>
 <div class="letter" id="letterBody"><p>正在加载信件内容……</p></div>
-<button id="writingToggle" type="button">还有些话，我想自己写下来</button>
+
 </div>
 </section>
-<section class="card" id="writingArea" aria-label="写下自己的话">
-<div class="kicker">留给自己的空间</div>
-<h2>还有一些话，慢慢写下来</h2>
-<textarea id="myWords" placeholder="在这里写下你还想说的话……"></textarea>
-<p class="write-hint" id="saveHint">内容只保存在当前浏览器，不会自动发送给任何人。</p>
-</section>
+
 <div class="footer">如果不想继续阅读，随时关闭页面就好。</div>
 </main>
 <script>
@@ -64,10 +60,7 @@ const letter=document.getElementById('letter');letter.classList.add('visible');
 letter.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
 this.textContent='信已展开';this.disabled=true;this.style.opacity='.65';
 });
-document.getElementById('writingToggle').addEventListener('click',function(){
-  const area=document.getElementById('writingArea');
-  area.classList.add('visible');
-  area.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+
   this.textContent='写字区域已展开';
   this.disabled=true;
   this.style.opacity='.65';
@@ -101,21 +94,6 @@ async function loadLetter(){
   }
 }
 loadLetter();
-const myWords=document.getElementById('myWords');
-const saveHint=document.getElementById('saveHint');
-try{
-  myWords.value=localStorage.getItem('letter-my-words')||'';
-  myWords.addEventListener('input',function(){
-    try{
-      localStorage.setItem('letter-my-words',myWords.value);
-      saveHint.textContent='已在当前浏览器自动保存，不会自动发送给任何人。';
-    }catch(e){
-      saveHint.textContent='当前浏览器无法自动保存，请自行复制备份。';
-    }
-  });
-}catch(e){
-  saveHint.textContent='当前浏览器不支持本地保存，请自行复制备份。';
-}
 </script>
 </body>
 </html>
