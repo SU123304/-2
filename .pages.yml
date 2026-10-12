@@ -13,5 +13,8 @@ content:
       - name: body
         label: 信件正文
         type: rich-text
+        options:
+          format: markdown
+          switcher: false
     operations:
       delete: false
