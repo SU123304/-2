@@ -23,6 +23,11 @@ button:focus-visible{outline:3px solid #c7a79a;outline-offset:3px}
 h2{text-align:center;font-size:25px;font-weight:500;margin:8px 0 28px}
 .letter p{margin:0 0 19px}
 .sign{text-align:right;color:#75665e;margin-top:30px}
+#writingArea{display:none;margin-top:18px}
+#writingArea.visible{display:block;animation:fade .55s ease both}
+#myWords{display:block;width:100%;min-height:240px;resize:vertical;border:1px solid #e5d8cc;border-radius:14px;background:#fffefa;color:var(--ink);font:inherit;line-height:1.9;padding:15px;outline:none}
+#myWords:focus{border-color:#b99486;box-shadow:0 0 0 3px #9b6e621c}
+.write-hint{color:var(--muted);font-size:13px;margin:8px 0 0}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){#letter.visible{animation:none}html{scroll-behavior:auto}}
 </style>
@@ -57,7 +62,14 @@ h2{text-align:center;font-size:25px;font-weight:500;margin:8px 0 28px}
 <p>如果你愿意再给我们一次机会，我会珍惜它，也会用实际行动，而不是只靠这封信来证明。如果你不愿意，我也会接受。你可以不用回复，读到这里就已经足够了。</p>
 <p>愿你照顾好自己。无论最后的答案是什么，我都真心希望你能过得好。</p>
 <div class="sign">对不起，也谢谢你。<br>一直想把话说清楚的我</div>
+<button id="writingToggle" type="button">还有些话，我想自己写下来</button>
 </div>
+</section>
+<section class="card" id="writingArea" aria-label="写下自己的话">
+<div class="kicker">留给自己的空间</div>
+<h2>还有一些话，慢慢写下来</h2>
+<textarea id="myWords" placeholder="在这里写下你还想说的话……"></textarea>
+<p class="write-hint" id="saveHint">内容只保存在当前浏览器，不会自动发送给任何人。</p>
 </section>
 <div class="footer">如果不想继续阅读，随时关闭页面就好。</div>
 </main>
@@ -67,6 +79,29 @@ const letter=document.getElementById('letter');letter.classList.add('visible');
 letter.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
 this.textContent='信已展开';this.disabled=true;this.style.opacity='.65';
 });
+document.getElementById('writingToggle').addEventListener('click',function(){
+  const area=document.getElementById('writingArea');
+  area.classList.add('visible');
+  area.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  this.textContent='写字区域已展开';
+  this.disabled=true;
+  this.style.opacity='.65';
+});
+const myWords=document.getElementById('myWords');
+const saveHint=document.getElementById('saveHint');
+try{
+  myWords.value=localStorage.getItem('letter-my-words')||'';
+  myWords.addEventListener('input',function(){
+    try{
+      localStorage.setItem('letter-my-words',myWords.value);
+      saveHint.textContent='已在当前浏览器自动保存，不会自动发送给任何人。';
+    }catch(e){
+      saveHint.textContent='当前浏览器无法自动保存，请自行复制备份。';
+    }
+  });
+}catch(e){
+  saveHint.textContent='当前浏览器不支持本地保存，请自行复制备份。';
+}
 </script>
 </body>
 </html>
