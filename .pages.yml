@@ -1,0 +1,17 @@
+media: media
+content:
+  - name: letter
+    label: 告白长信
+    type: file
+    path: content/letter.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: 信件标题
+        type: string
+        required: true
+      - name: body
+        label: 信件正文
+        type: rich-text
+    operations:
+      delete: false
