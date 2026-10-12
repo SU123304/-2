@@ -61,10 +61,6 @@ letter.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').m
 this.textContent='信已展开';this.disabled=true;this.style.opacity='.65';
 });
 
-  this.textContent='写字区域已展开';
-  this.disabled=true;
-  this.style.opacity='.65';
-});
 async function loadLetter(){
   const target=document.getElementById('letterBody');
   try{
