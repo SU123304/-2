@@ -78,20 +78,20 @@ async function loadLetter(){
     const response=await fetch('content/letter.md?update='+Date.now(),{cache:'no-store'});
     if(!response.ok) throw new Error('无法读取信件内容');
     const source=await response.text();
-    const parts=source.split(/^---\\s*$/m);
+    const parts=source.split(/^---\s*$/m);
     let title='有些话，想认真说完';
     let body=source;
     if(parts.length>=3){
       const meta=parts[1];
-      const found=meta.match(/^title:\\s*["']?(.*?)["']?\\s*$/m);
+      const found=meta.match(/^title:\s*["']?(.*?)["']?\s*$/m);
       if(found) title=found[1];
       body=parts.slice(2).join('---').trim();
     }
     const escapeHtml=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-    const inline=s=>escapeHtml(s).replace(/\\*\\*(.+?)\\*\\*/g,'<strong>$1</strong>').replace(/\\*(.+?)\\*/g,'<em>$1</em>');
-    const blocks=body.split(/\\n\\s*\\n/).map(s=>s.trim()).filter(Boolean);
+    const inline=s=>escapeHtml(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
+    const blocks=body.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
     target.innerHTML=blocks.map((block,i)=>{
-      const safe=inline(block).replace(/\\n/g,'<br>');
+      const safe=inline(block).replace(/\n/g,'<br>');
       return i===blocks.length-1 ? '<p class="sign">'+safe+'</p>' : '<p>'+safe+'</p>';
     }).join('');
     const heading=document.querySelector('#letter h2');
